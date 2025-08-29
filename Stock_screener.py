@@ -1,6 +1,38 @@
-from typing import Annotated
+from typing import Annotated, TypedDict
 from langgraph.graph import START, END, StateGraph
 from langgraph.graph.message import add_messages
 
 from langgraph.checkpoint.memory import InMemorySaver
 from langchain import init_chat_models
+from colorama import Fore
+
+
+llm_ollama = init_chat_models(model="ollama:llama3.2:3b-instruct-fp16") # initialize local LLM
+
+# Create state with reducer functions
+
+class StockState(TypedDict):
+    messages: Annotated[list,add_messages]
+    
+# Define the Chatbot invoker function
+def chatbot(state:StockState) -> StockState:
+    """Invoke The llm and return responses"""
+    return {"messages": [llm_ollama.invoke(state["messages"])]}
+
+# Create the state graph
+graph_builder = StateGraph(StockState)
+graph_builder.add_node("Chatbot", chatbot)
+graph_builder.add_edge(START, "Chatbot")
+graph_builder.add_edge("chatbot", END)
+
+# Add Memory and Compile Graph
+memory = InMemorySaver
+graph = graph_builder.compile(checkpointer=memory)
+
+# Build call loop and run it
+
+if __name__ == "__main__":
+    while True:
+        user_input = input("Pass your prompt Here:")
+        res = graph.invoke({"messages", [{"role": "user", "content": user_input}]})
+        print(Fore.LIGHTYELLOW_EX + res["messages"][-1].content + Fore.RESET) # colour the Agent CMD
