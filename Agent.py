@@ -3,11 +3,11 @@ from langgraph.graph import START, END, StateGraph
 from langgraph.graph.message import add_messages
 
 from langgraph.checkpoint.memory import InMemorySaver
-from langchain import init_chat_models
+from langchain.chat_models import init_chat_model
 from colorama import Fore
 
 
-llm_ollama = init_chat_models(model="ollama:llama3.2:3b-instruct-fp16") # initialize local LLM
+llm_ollama = init_chat_model(model="ollama:llama3.2:3b-instruct-fp16") # initialize local LLM
 
 # Create state with reducer functions
 
