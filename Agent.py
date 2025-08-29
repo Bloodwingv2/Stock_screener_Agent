@@ -26,7 +26,7 @@ graph_builder.add_edge(START, "Chatbot")
 graph_builder.add_edge("Chatbot", END)
 
 # Add Memory and Compile Graph
-memory = InMemorySaver
+memory = InMemorySaver()
 graph = graph_builder.compile(checkpointer=memory)
 
 # Build call loop and run it
@@ -34,5 +34,5 @@ graph = graph_builder.compile(checkpointer=memory)
 if __name__ == "__main__":
     while True:
         user_input = input("Pass your prompt Here:")
-        res = graph.invoke({"messages": [{"role": "user", "content": user_input}]})
+        res = graph.invoke({"messages": [{"role": "user", "content": user_input}]}, config = {"configurable":{"thread_id":1234}})
         print(Fore.LIGHTYELLOW_EX + res["messages"][-1].content + Fore.RESET) # colour the Agent CMD
