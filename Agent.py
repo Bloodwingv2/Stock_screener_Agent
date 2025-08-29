@@ -7,7 +7,7 @@ from langchain.chat_models import init_chat_model
 from colorama import Fore
 
 
-llm_ollama = init_chat_model(model="ollama:llama3.2:3b-instruct-fp16") # initialize local LLM
+llm_ollama = init_chat_model(model="ollama:llama3.2:latest") # initialize local LLM
 
 # Create state with reducer functions
 
