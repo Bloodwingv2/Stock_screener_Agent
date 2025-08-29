@@ -45,3 +45,6 @@ def simple_screener(screen_type:str, offset:int) -> str:
         output_data.append(details) 
     
     return f"Stock Screener Results: {output_data}"
+
+if __name__ == "__main__":
+    simple_screener({'screen_type':"day_gainers", "offset": 0})
