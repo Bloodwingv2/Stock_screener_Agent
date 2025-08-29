@@ -20,7 +20,7 @@ def chatbot(state:StockState) -> StockState:
     return {"messages": [llm_ollama_tools.invoke(state["messages"])]}
 
 # Define Conditional Edge Function
-def router(state:StockState) -> StockState:
+def router(state:StockState) -> str:
     """Route the messages to the appropriate tool or LLM"""
     last_message = state["messages"][-1]
     if hasattr(last_message, 'tool_calls') and last_message.tool_calls:
@@ -30,9 +30,12 @@ def router(state:StockState) -> StockState:
         
 
 # Create and list the tools
-tools = [simple_screener]
-tool_node = ToolNode(tools)
-llm_ollama_tools = llm_ollama.bind_tools(tool_node)
+tools_new = [simple_screener]
+# Create a ToolNode for LangGraph
+tool_node = ToolNode(tools_new)
+# Bind tools directly to the LLM (not the ToolNode)
+llm_ollama_tools = llm_ollama.bind_tools(tools_new)
+
 
 # Create the state graph
 graph_builder = StateGraph(StockState)
@@ -43,7 +46,7 @@ graph_builder.add_node("ToolNode", tool_node)
 graph_builder.add_edge(START, "Chatbot")
 graph_builder.add_conditional_edges(
     "Chatbot",
-    "Router",
+    router,
     {
         "Continue": "ToolNode",
         "END": END,
