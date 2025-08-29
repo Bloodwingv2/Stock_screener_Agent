@@ -34,5 +34,5 @@ graph = graph_builder.compile(checkpointer=memory)
 if __name__ == "__main__":
     while True:
         user_input = input("Pass your prompt Here:")
-        res = graph.invoke({"messages", [{"role": "user", "content": user_input}]})
+        res = graph.invoke({"messages": [{"role": "user", "content": user_input}]})
         print(Fore.LIGHTYELLOW_EX + res["messages"][-1].content + Fore.RESET) # colour the Agent CMD
