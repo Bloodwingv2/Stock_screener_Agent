@@ -23,7 +23,7 @@ def chatbot(state:StockState) -> StockState:
 graph_builder = StateGraph(StockState)
 graph_builder.add_node("Chatbot", chatbot)
 graph_builder.add_edge(START, "Chatbot")
-graph_builder.add_edge("chatbot", END)
+graph_builder.add_edge("Chatbot", END)
 
 # Add Memory and Compile Graph
 memory = InMemorySaver
