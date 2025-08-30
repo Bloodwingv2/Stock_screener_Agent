@@ -9,5 +9,6 @@ dependencies = [
     "langchain>=0.3.27",
     "langchain-ollama>=0.3.7",
     "langgraph>=0.6.6",
+    "rich>=14.1.0",
     "yfinance>=0.2.65",
 ]
