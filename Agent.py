@@ -7,6 +7,8 @@ from langchain.chat_models import init_chat_model
 from langgraph.prebuilt import ToolNode
 from tools import simple_screener
 
+import asyncio
+
 # Import cli from python file
 from cli_interface import StockScreenerCLI
 
@@ -69,4 +71,4 @@ graph = graph_builder.compile(checkpointer=memory)
 if __name__ == "__main__":
     # Initialize and run the enhanced CLI
     cli = StockScreenerCLI(graph)
-    cli.run()
+    asyncio.run(cli.run()) 

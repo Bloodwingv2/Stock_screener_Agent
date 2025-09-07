@@ -9,6 +9,9 @@ from rich.table import Table
 from rich.text import Text
 from rich.align import Align
 from rich.tree import Tree
+from contextlib import asynccontextmanager
+import asyncio
+import re
 
 console = Console()
 
@@ -93,35 +96,74 @@ class StockScreenerCLI:
     def format_response(self, response_content: str) -> Panel:
         """Enhanced response formatting with stock-specific styling"""
         # Color-code financial data
-        lines = response_content.split('\n')
+        lines = response_content.splitlines()
         formatted_text = Text()
-        
+
         for line in lines:
-            if '$' in line and '%' in line:  # Price/percentage line
-                if '+' in line or 'gain' in line.lower():
-                    formatted_text.append(line + '\n', style="bold green")
-                elif '-' in line or 'loss' in line.lower():
-                    formatted_text.append(line + '\n', style="bold red")
+            clean_line = line.strip()
+
+            # Regex for numbers like $123.45 or percentages like +3.4%
+            has_price = re.search(r"\$\d+(?:,\d{3})*(?:\.\d{1,2})?", clean_line)
+            has_percent = re.search(r"[-+]?\d+(\.\d+)?%", clean_line)
+
+            if has_price or has_percent:
+                if re.search(r"\+|\bgain\b|\bup\b", clean_line, re.IGNORECASE):
+                    style = "bold green"
+                elif re.search(r"-|\bloss\b|\bdown\b", clean_line, re.IGNORECASE):
+                    style = "bold red"
                 else:
-                    formatted_text.append(line + '\n', style="white")
-            elif 'Buy' in line:
-                formatted_text.append(line + '\n', style="bold green")
-            elif 'Sell' in line:
-                formatted_text.append(line + '\n', style="bold red")
+                    style = "green"
+                formatted_text.append(clean_line + "\n", style=style)
+
+            elif re.search(r"\b(Buy|Long)\b", clean_line, re.IGNORECASE):
+                formatted_text.append(clean_line + "\n", style="bold green")
+
+            elif re.search(r"\b(Sell|Short)\b", clean_line, re.IGNORECASE):
+                formatted_text.append(clean_line + "\n", style="bold red")
+
             else:
-                formatted_text.append(line + '\n', style="white")
-        
+                formatted_text.append(clean_line + "\n", style="white")
+                
         return Panel(
             formatted_text,
-            title="🤖 StockScreener AI",
+            title="⚡ StockScreener AI",
             title_align="left",
             border_style="green",
             padding=(1, 2)
         )
 
-    def show_thinking(self, message="Analyzing markets"):
-        """Professional thinking animation"""
-        return console.status(f"[bold blue]{message}...[/bold blue]", spinner="dots")
+    @asynccontextmanager
+    async def show_thinking(self):
+        """Async status animation with rotating messages."""
+        messages = [
+            "Analyzing market data",
+            "Consulting Yahoo Finance",
+            "Generating insights",
+            "Crunching numbers",
+            "Finding the best stocks Using Black Magic",
+            "Doing some Voodoo",
+            "Almost There",
+            "Wow this is taking longer than usual",
+            "Did you know? The stock market is open 252 days a year!",
+            "Fun Fact: The New York Stock Exchange is the largest stock exchange in the world by market capitalization"
+            "Hang tight, good things take time!"
+        ]
+        stop_event = asyncio.Event()
+
+        async def animate():
+            i = 0
+            with console.status("[bold blue]Starting...[/bold blue]", spinner="dots3") as status:
+                while not stop_event.is_set():
+                    status.update(f"[bold magenta]{messages[i % len(messages)]}...[/bold magenta]")
+                    await asyncio.sleep(2.5)
+                    i += 1
+
+        task = asyncio.create_task(animate())
+        try:
+            yield  
+        finally:
+            stop_event.set()
+            await task
 
     def show_stats(self):
         """Display session statistics"""
@@ -130,11 +172,7 @@ class StockScreenerCLI:
         stats = Table(title="📊 Session Stats", show_header=False)
         stats.add_column("Metric", style="cyan", no_wrap=True)
         stats.add_column("Value", style="white")
-        
-        stats.add_row("Queries Made", str(self.query_count))
-        stats.add_row("Session Duration", duration)
-        stats.add_row("Session ID", self.session_id[-8:])  # Show last 8 chars
-        
+        stats.add_row("Queries Made", str(self.query_count), "Session Duration", duration, "Session ID", self.session_id[-8:])  # Show last 8 chars
         console.print(Panel(stats, border_style="blue"))
 
     def handle_error(self, error: Exception):
@@ -147,7 +185,7 @@ class StockScreenerCLI:
         )
         console.print(error_panel)
 
-    def run(self):
+    async def run(self):
         """Main CLI loop with enhanced UX"""
         self.display_welcome()
         
@@ -159,11 +197,10 @@ class StockScreenerCLI:
                 
                 # Handle commands
                 if user_input.lower() in ["exit", "quit"]:
-                    if Confirm.ask("\n[yellow]Exit Stock Screener?[/yellow]"):
-                        self.show_stats()
-                        console.print("\n[green]Thanks for using Stock Screener AI! 👋[/green]")
-                        break
-                    continue
+                    console.print("\n[yellow]Exiting Stock Screener....[/yellow]")
+                    self.show_stats()
+                    console.print("\n[green]Thanks for using Stock Screener AI! 👋[/green]")
+                    break
                     
                 elif user_input.lower() == "help":
                     self.display_help()
@@ -179,8 +216,10 @@ class StockScreenerCLI:
                     continue
                 
                 # Process with agent
-                with self.show_thinking("Processing your request"):
-                    res = self.graph.invoke(
+                async with self.show_thinking():
+                    # run blocking graph.invoke in a thread so it doesn’t freeze event loop
+                    res = await asyncio.to_thread(
+                        self.graph.invoke,
                         {"messages": [{"role": "user", "content": user_input}]},
                         config={"configurable": {"thread_id": self.session_id}}
                     )
