@@ -203,11 +203,11 @@ class StockScreenerCLI:
         stop = asyncio.Event()
 
         async def animate():
-            # Spinner and the text column are both styled bright green.
+            # Spinner and the text column are both styled bright magenta.
             # We pass plain strings into description to avoid markup parsing issues.
             with Progress(
-                SpinnerColumn(spinner_name="dots3", style="bright_green"),
-                TextColumn("[progress.description]{task.description}", style="bold bright_green"),
+                SpinnerColumn(spinner_name="dots3", style="bright_magenta"),
+                TextColumn("[progress.description]{task.description}", style="bright_magenta"),
                 console=console,
                 transient=True
             ) as progress:
