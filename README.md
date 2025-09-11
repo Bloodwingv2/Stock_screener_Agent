@@ -55,3 +55,4 @@ stockscreener
 ```
 
 The agent will guide you with quick commands through the stock screening process with a beautiful, animated, interactive CLI.
+
