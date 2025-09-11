@@ -1,9 +1,13 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "stock-screener-agent"
-version = "0.1.0"
-description = "Add your description here"
+version = "1.0.0"
+description = "An AI-powered stock screener agent"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.10"
 dependencies = [
     "colorama>=0.4.6",
     "langchain>=0.3.27",
@@ -12,3 +16,11 @@ dependencies = [
     "rich>=14.1.0",
     "yfinance>=0.2.65",
 ]
+
+[project.scripts]
+stockscreener ="stock_screener_agent.agent:main"
+
+[tool.setuptools.packages.find]
+include = ["stock_screener_agent*"]
+exclude = ["Documentation*"]
+

@@ -5,12 +5,12 @@ from langchain_core.messages import SystemMessage
 from langgraph.checkpoint.memory import InMemorySaver
 from langchain.chat_models import init_chat_model
 from langgraph.prebuilt import ToolNode
-from tools import simple_screener
+from .tools import simple_screener
 
 import asyncio
 
 # Import cli from python file
-from cli_interface import StockScreenerCLI
+from .cli_interface import StockScreenerCLI
 
 llm_ollama = init_chat_model(model="ollama:llama3.2:latest") # initialize local LLM
 
@@ -68,7 +68,11 @@ graph_builder.add_edge("ToolNode","Chatbot")
 memory = InMemorySaver()
 graph = graph_builder.compile(checkpointer=memory)
 
-if __name__ == "__main__":
+def main():
+    """Entry point for the package command."""
     # Initialize and run the enhanced CLI
     cli = StockScreenerCLI(graph)
-    asyncio.run(cli.run()) 
+    asyncio.run(cli.run())
+
+if __name__ == "__main__":
+    main()
