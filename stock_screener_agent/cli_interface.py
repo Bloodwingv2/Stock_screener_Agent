@@ -1,3 +1,5 @@
+# cli_interface.py - Modern Premium CLI Interface (Gemini-style, polished)
+
 import time
 import asyncio
 import re
@@ -190,6 +192,9 @@ class StockScreenerCLI:
     # ---------------- STATUS ---------------- #
     @asynccontextmanager
     async def show_thinking(self):
+        """
+        Async context manager to show a thinking spinner with changing text states.    
+        """
         states = [
             "Analyzing market data", "Processing fundamentals", "Calculating metrics",
             "Generating insights", "Reviewing trends", "Compiling report",
@@ -198,16 +203,19 @@ class StockScreenerCLI:
         stop = asyncio.Event()
 
         async def animate():
+            # Spinner and the text column are both styled bright green.
+            # We pass plain strings into description to avoid markup parsing issues.
             with Progress(
-                SpinnerColumn(spinner_name=f"dots3"),
-                TextColumn("[progress.description]{task.description}"),
+                SpinnerColumn(spinner_name="dots3", style="bright_green"),
+                TextColumn("[progress.description]{task.description}", style="bold bright_green"),
                 console=console,
                 transient=True
             ) as progress:
                 task = progress.add_task("", total=None)
                 i = 0
                 while not stop.is_set():
-                    progress.update(task, description=f"[bold {self.primary}]{states[i % len(states)]}[/]")
+                    # Use plain text description (no markup)
+                    progress.update(task, description=states[i % len(states)])
                     await asyncio.sleep(2)
                     i += 1
 
