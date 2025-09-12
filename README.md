@@ -1,6 +1,6 @@
 # Stock Screener Agent
 
-An AI-powered CLI based stock screener agent built with LangGraph, LangChain.
+An AI-powered CLI based stock screener agent built with LangGraph, LangChain, Llama3.2 for lightweight processing.
 
 ---
 <img width="1576" height="607" alt="New ui 1" src="https://github.com/user-attachments/assets/08c74ade-bc3b-4985-9a61-dba0a8551c07" />
@@ -94,6 +94,7 @@ stockscreener
 ```
 
 The agent will present a welcome message, guide you with quick commands through the stock screening process with a beautiful, animated, interactive CLI with a unique and color full spinner powered by Llama3.2 from Ollama.
+
 
 
 
