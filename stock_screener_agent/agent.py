@@ -54,8 +54,9 @@ graph_builder.add_node("Router", router)
 graph_builder.add_node("ToolNode", tool_node)
 
 graph_builder.add_edge(START, "Chatbot")
+graph_builder.add_edge("Chatbot", "Router")
 graph_builder.add_conditional_edges(
-    "Chatbot",
+    "Router",
     router,
     {
         "Continue": "ToolNode",
