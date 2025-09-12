@@ -50,7 +50,6 @@ llm_ollama_tools = llm_ollama.bind_tools(tools_new)
 # Create the state graph
 graph_builder = StateGraph(StockState)
 graph_builder.add_node("Chatbot", chatbot)
-graph_builder.add_node("Router", router)
 graph_builder.add_node("ToolNode", tool_node)
 
 graph_builder.add_edge(START, "Chatbot")
