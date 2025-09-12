@@ -1,6 +1,42 @@
 # Stock Screener Agent
 
-An AI-powered stock screener agent built with LangGraph, LangChain.
+An AI-powered CLI based stock screener agent built with LangGraph, LangChain, Llama3.2 for lightweight processing.
+
+---
+<img width="1576" height="607" alt="New ui 1" src="https://github.com/user-attachments/assets/08c74ade-bc3b-4985-9a61-dba0a8551c07" />
+
+---
+## Fetch Financial Data
+Use Local AI models from Ollama to fetch Financial information from Yahoo finance for any stock related data
+<br><br>
+<img width="1570" height="857" alt="ui 2" src="https://github.com/user-attachments/assets/34c8198d-dc3d-46c7-98b3-4d7e4285d70a" />
+
+---
+## Pagination / Offset Values
+
+Decide which page of data to fetch — the 1st, 2nd, or beyond. This lets you explore **more than just the first results page
+<br><br>
+<img width="1576" height="473" alt="ui 6" src="https://github.com/user-attachments/assets/d2702c47-8d71-436c-b20d-5ccf464a59cb" />
+
+---
+## Memory with LangGraph
+Leverages **LangGraph’s built-in memory saver** to persist data between states. This gives the agent **contextual memory** for previously fetched data.
+<br><br>
+- Regular Conversation response 
+<img width="1568" height="542" alt="ui 3" src="https://github.com/user-attachments/assets/8dfb1967-49b1-4ce4-8c27-8713e7cc3d3b" />
+<br><br>
+
+- Context Based Response using in-built memory
+<img width="1598" height="659" alt="ui 4" src="https://github.com/user-attachments/assets/2fd0307b-c9a2-4b6c-837b-b1e416779d18" />
+
+---
+## Quick Commands
+- Check **today’s biggest gainers/losers** instantly  
+- Discover **valuable small-cap opportunities**  
+- Get a **stat sheet + analyst recommendation** (Buy / Sell)
+<br><br>
+
+---
 
 ## Installation
 
@@ -16,7 +52,7 @@ An AI-powered stock screener agent built with LangGraph, LangChain.
    cd Stock_screener_Agent
    ```
 
-2. **Install with uv (creates venv automatically)**
+2. **Install with uv (creates venv and installs dependencies automatically)**
    ```bash
    uv sync
    ```
@@ -45,14 +81,22 @@ Total installation size: ~50-100MB
 
 ## Development
 
-For development, follow the same installation steps above. The `-e` flag installs the package in "editable" mode, so your changes are reflected immediately without reinstalling.
+For development, follow the same installation steps above. Customize your code as per your free-will and finally write.
+  ```bash
+   pip install -e .
+   ```
+The above command will install the the entire codebase as a pip package in your venv as an editable format allowing any code changed to reflect immediately in the final package for your local machine
 
 ## Usage
-
-After installation, simply run:
+After installation, simply type:
 ```bash
 stockscreener
 ```
 
-The agent will guide you with quick commands through the stock screening process with a beautiful, animated, interactive CLI.
+The agent will present a welcome message, guide you with quick commands through the stock screening process with a beautiful, animated, interactive CLI with a unique and color full spinner powered by Llama3.2 from Ollama.
+
+
+
+
+
 
