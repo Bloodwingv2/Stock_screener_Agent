@@ -16,7 +16,7 @@ An AI-powered stock screener agent built with LangGraph, LangChain.
    cd Stock_screener_Agent
    ```
 
-2. **Install with uv (creates venv automatically)**
+2. **Install with uv (creates venv and installs dependencies automatically)**
    ```bash
    uv sync
    ```
@@ -45,14 +45,18 @@ Total installation size: ~50-100MB
 
 ## Development
 
-For development, follow the same installation steps above. The `-e` flag installs the package in "editable" mode, so your changes are reflected immediately without reinstalling.
+For development, follow the same installation steps above. Customize your code as per your free-will and finally write.
+  ```bash
+   pip install -e .
+   ```
+The above command will install the the entire codebase as a pip package in your venv as an editable format allowing any code changed to reflect immediately in the final package for your local machine
 
 ## Usage
-
-After installation, simply run:
+After installation, simply type:
 ```bash
 stockscreener
 ```
 
-The agent will guide you with quick commands through the stock screening process with a beautiful, animated, interactive CLI.
+The agent will present a welcome message, guide you with quick commands through the stock screening process with a beautiful, animated, interactive CLI with a unique and color full spinner powered by Llama3.2 from Ollama.
+
 
