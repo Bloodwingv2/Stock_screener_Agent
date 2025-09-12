@@ -22,6 +22,11 @@ Decide which page of data to fetch — the 1st, 2nd, or beyond. This lets you ex
 ## Memory with LangGraph
 Leverages **LangGraph’s built-in memory saver** to persist data between states. This gives the agent **contextual memory** for previously fetched data.
 <br><br>
+- Regular Conversation response 
+<img width="1568" height="542" alt="ui 3" src="https://github.com/user-attachments/assets/8dfb1967-49b1-4ce4-8c27-8713e7cc3d3b" />
+<br><br>
+
+- Context Based Response using in-built memory
 <img width="1598" height="659" alt="ui 4" src="https://github.com/user-attachments/assets/2fd0307b-c9a2-4b6c-837b-b1e416779d18" />
 
 ---
@@ -89,6 +94,7 @@ stockscreener
 ```
 
 The agent will present a welcome message, guide you with quick commands through the stock screening process with a beautiful, animated, interactive CLI with a unique and color full spinner powered by Llama3.2 from Ollama.
+
 
 
 
