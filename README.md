@@ -14,7 +14,7 @@ Use Local AI models from Ollama to fetch Financial information from Yahoo financ
 ---
 ## Pagination / Offset Values
 
-Decide which page of data to fetch — the 1st, 2nd, or beyond. This lets you explore **more than just the first results page
+Decide which page of data to fetch — the 1st, 2nd, or beyond. This lets you explore more than just the first results page
 <br><br>
 <img width="1576" height="473" alt="ui 6" src="https://github.com/user-attachments/assets/d2702c47-8d71-436c-b20d-5ccf464a59cb" />
 
@@ -94,6 +94,7 @@ stockscreener
 ```
 
 The agent will present a welcome message, guide you with quick commands through the stock screening process with a beautiful, animated, interactive CLI with a unique and color full spinner powered by Llama3.2 from Ollama.
+
 
 
 
