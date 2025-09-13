@@ -10,12 +10,10 @@ ollama pull llama3.2:latest
 ```
 ## Product Overview
 An AI-powered CLI based stock screener agent built with LangGraph, LangChain, Llama3.2 for lightweight processing.
+<br><br>
+<img width="1576" height="607" alt="New ui 1" src="https://github.com/user-attachments/assets/08c74ade-bc3b-4985-9a61-dba0a8551c07" /> 
 
 https://github.com/user-attachments/assets/a67ba317-6cfd-4eed-b0bd-429fecadf534
-
-
----
-<img width="1576" height="607" alt="New ui 1" src="https://github.com/user-attachments/assets/08c74ade-bc3b-4985-9a61-dba0a8551c07" /> 
 
 ---
 
@@ -25,18 +23,18 @@ Following Flowchart describes the Agent Flow loop during execution
 <img width="254" height="372" alt="Agent Graph" src="https://github.com/user-attachments/assets/f0d973d7-54ca-44dc-8231-55babdafdef6" />
 
 ---
+## Memory with LangGraph
+Leverages **LangGraph’s built-in memory saver** to persist data between states. This gives the agent **contextual memory** for previously fetched data.
+<br><br>
+
+https://github.com/user-attachments/assets/ddfe56e8-a3db-4f85-961d-107747ce3b03
+
+---
 ## Fetch Financial Data
 Use a lightweight llama3.2 model from Ollama to fetch Financial information from Yahoo finance for any stock related data
 <br><br>
 
-
-
 https://github.com/user-attachments/assets/8a054a23-1ac6-4edb-a8e0-46efe11da23f
-
-
-
-
-<img width="1570" height="857" alt="ui 2" src="https://github.com/user-attachments/assets/34c8198d-dc3d-46c7-98b3-4d7e4285d70a" />
 
 ---
 ## Pagination / Offset Values
@@ -46,14 +44,7 @@ Decide which page of data to fetch — the 1st, 2nd, or beyond. This lets you ex
 <img width="1576" height="473" alt="ui 6" src="https://github.com/user-attachments/assets/d2702c47-8d71-436c-b20d-5ccf464a59cb" />
 
 ---
-## Memory with LangGraph
-Leverages **LangGraph’s built-in memory saver** to persist data between states. This gives the agent **contextual memory** for previously fetched data.
-<br><br>
 
-https://github.com/user-attachments/assets/ddfe56e8-a3db-4f85-961d-107747ce3b03
-
-
----
 ## Quick Commands
 - Check **today’s biggest gainers/losers** instantly  
 - Discover **valuable small-cap opportunities**  
@@ -118,6 +109,7 @@ stockscreener
 ```
 
 The agent will present a welcome message, guide you with quick commands through the stock screening process with a beautiful, animated, interactive CLI with a unique and color full spinner powered by Llama3.2 from Ollama.
+
 
 
 
