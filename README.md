@@ -11,7 +11,8 @@ ollama pull llama3.2:latest
 ## Product Overview
 An AI-powered CLI based stock screener agent built with LangGraph, LangChain, Llama3.2 for lightweight processing.
 
-https://github.com/user-attachments/assets/b15f2b5c-6694-408c-ae22-8863a3b1cb1e
+https://github.com/user-attachments/assets/a67ba317-6cfd-4eed-b0bd-429fecadf534
+
 
 ---
 <img width="1576" height="607" alt="New ui 1" src="https://github.com/user-attachments/assets/08c74ade-bc3b-4985-9a61-dba0a8551c07" /> 
@@ -29,7 +30,10 @@ Use a lightweight llama3.2 model from Ollama to fetch Financial information from
 <br><br>
 
 
-https://github.com/user-attachments/assets/2749f3f1-76e0-4e44-bc46-3065b33ec939
+
+https://github.com/user-attachments/assets/8a054a23-1ac6-4edb-a8e0-46efe11da23f
+
+
 
 
 <img width="1570" height="857" alt="ui 2" src="https://github.com/user-attachments/assets/34c8198d-dc3d-46c7-98b3-4d7e4285d70a" />
@@ -46,15 +50,8 @@ Decide which page of data to fetch — the 1st, 2nd, or beyond. This lets you ex
 Leverages **LangGraph’s built-in memory saver** to persist data between states. This gives the agent **contextual memory** for previously fetched data.
 <br><br>
 
-https://github.com/user-attachments/assets/6e328775-8fba-4d5f-a8be-30dc87c1bce3
+https://github.com/user-attachments/assets/ddfe56e8-a3db-4f85-961d-107747ce3b03
 
-- Regular Conversation response
-- 
-<img width="1568" height="542" alt="ui 3" src="https://github.com/user-attachments/assets/8dfb1967-49b1-4ce4-8c27-8713e7cc3d3b" />
-<br><br>
-
-- Context Based Response using in-built memory
-<img width="1598" height="659" alt="ui 4" src="https://github.com/user-attachments/assets/2fd0307b-c9a2-4b6c-837b-b1e416779d18" />
 
 ---
 ## Quick Commands
@@ -121,6 +118,7 @@ stockscreener
 ```
 
 The agent will present a welcome message, guide you with quick commands through the stock screening process with a beautiful, animated, interactive CLI with a unique and color full spinner powered by Llama3.2 from Ollama.
+
 
 
 
