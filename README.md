@@ -1,5 +1,14 @@
 # Stock Screener Agent
 
+## Pre-requisites 
+An AI-powered CLI based stock screener agent built with LangGraph, LangChain, Llama3.2 for lightweight processing.  
+👉 Requires [Ollama](https://ollama.ai/) installed and running locally.  
+
+⚡ **After installation, Open CMD and run:**
+```bash
+ollama pull llama3.2:latest
+```
+## Product Overview
 An AI-powered CLI based stock screener agent built with LangGraph, LangChain, Llama3.2 for lightweight processing.
 
 ---
@@ -7,12 +16,14 @@ An AI-powered CLI based stock screener agent built with LangGraph, LangChain, Ll
 
 ---
 
-## Agent State Flow Diagram
+## Agent State Flow Diagram (Langgraph Flow)
+Following Flowchart describes the Agent Flow loop during execution
+
 <img width="254" height="372" alt="Agent Graph" src="https://github.com/user-attachments/assets/f0d973d7-54ca-44dc-8231-55babdafdef6" />
 
 ---
 ## Fetch Financial Data
-Use Local AI models from Ollama to fetch Financial information from Yahoo finance for any stock related data
+Use a lightweight llama3.2 model from Ollama to fetch Financial information from Yahoo finance for any stock related data
 <br><br>
 <img width="1570" height="857" alt="ui 2" src="https://github.com/user-attachments/assets/34c8198d-dc3d-46c7-98b3-4d7e4285d70a" />
 
@@ -99,6 +110,7 @@ stockscreener
 ```
 
 The agent will present a welcome message, guide you with quick commands through the stock screening process with a beautiful, animated, interactive CLI with a unique and color full spinner powered by Llama3.2 from Ollama.
+
 
 
 
